@@ -1,1 +1,1 @@
-# GamesBank
+# GameBank

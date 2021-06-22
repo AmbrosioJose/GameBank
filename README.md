@@ -23,8 +23,8 @@ Main Screen
 ![Trending](trending.png)|![Search](search.png) |![Favorites](favorites.png)
 
 ### Possible Improvements
-[ ] Properly handle authorization token
-[ ] Currently only fetching from api once in trending then relying on database. This has many ways in which it can be improved like refreshing data at every launch.
+- [ ] Properly handle authorization token
+- [ ] Currently only fetching from api once in trending then relying on database. This has many ways in which it can be improved like refreshing data at every launch.
 
 
 

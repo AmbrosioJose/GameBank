@@ -6,20 +6,17 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.ImageView
-import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ambrosio.gamebank.R
+import com.ambrosio.gamebank.adapters.TouchActionDelegate
 import com.ambrosio.gamebank.adapters.VideoGameAdapter
-import com.ambrosio.gamebank.ui.design.GridSpacingItemDecoration
-import com.ambrosio.gamebank.ui.search.SearchViewModel
+import com.ambrosio.gamebank.models.VideoGame
 import java.util.*
 
-class TrendingFragment : Fragment() {
+class TrendingFragment : Fragment(), TouchActionDelegate {
 
 
     private lateinit var trendingViewModel: TrendingViewModel
@@ -49,7 +46,7 @@ class TrendingFragment : Fragment() {
         val trendingGamesRV = view.findViewById<RecyclerView>(R.id.trendingRV)
         trendingGamesRV.layoutManager = GridLayoutManager(context, 2)
 
-        trendingGamesAdapter = VideoGameAdapter()
+        trendingGamesAdapter = VideoGameAdapter(this)
         trendingGamesRV.adapter = trendingGamesAdapter
     }
 
@@ -60,5 +57,9 @@ class TrendingFragment : Fragment() {
         })
 
         trendingViewModel.fetchTrending()
+    }
+
+    override fun onFavButtonClicked(game: VideoGame) {
+        trendingViewModel.toggleFavAndUpdate(game)
     }
 }

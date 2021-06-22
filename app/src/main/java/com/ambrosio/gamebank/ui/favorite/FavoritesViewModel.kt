@@ -23,4 +23,8 @@ class FavoritesViewModel : ViewModel() {
             searchLiveData.postValue(response?:ArrayList())
         }
     }
+
+    fun toggleAndUpdate(game: VideoGame){
+
+    }
 }

@@ -7,12 +7,15 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.view.isInvisible
-import androidx.core.view.isVisible
 import com.ambrosio.gamebank.R
 import com.ambrosio.gamebank.models.VideoGame
 import com.bumptech.glide.Glide
 
-class VideoGameAdapter(private val isFavEnabled: Boolean = true): RecyclerView.Adapter<VideoGameAdapter.MyViewHolder>(){
+interface TouchActionDelegate{
+    fun onFavButtonClicked(game: VideoGame)
+}
+
+class VideoGameAdapter(private val touchActionDelegate: TouchActionDelegate?, private val isFavEnabled: Boolean = true, ): RecyclerView.Adapter<VideoGameAdapter.MyViewHolder>(){
 
     var items = ArrayList<VideoGame>()
 
@@ -28,12 +31,12 @@ class VideoGameAdapter(private val isFavEnabled: Boolean = true): RecyclerView.A
         private val tvGenre: TextView = view.findViewById(R.id.tvGenre)
         private val tvRating: TextView = view.findViewById(R.id.tvRating)
 
-        fun bind(game: VideoGame){
+        fun bind(game: VideoGame, touchActionDelegate: TouchActionDelegate?){
             tvName.text = game.name
             tvGenre.text = game.genres?.first()?.name?:""
             tvRating.text = "${(game?.rating?:0).toInt().toString()}%"
-            if(game.cover != null && game.cover?.url?.isNotEmpty() ?: false){
-                print("https://"+ game.cover?.url)
+            if(game.cover != null && game.cover.url.isNotEmpty() ?: false){
+                print("https://"+ game.cover.url)
                 Glide.with(imgCover.context)
                     .load("https://"+ game.cover?.url?.replace("thumb", "cover_big"))
                     .into(imgCover)
@@ -41,6 +44,15 @@ class VideoGameAdapter(private val isFavEnabled: Boolean = true): RecyclerView.A
 
             if(!isFavEnabled){
                 imgFavorite.isInvisible = true
+            } else {
+                if(game.isFavorite == 1)
+                    imgFavorite.setImageResource(R.drawable.ic_favorite)
+                else
+                    imgFavorite.setImageResource(R.drawable.ic_favorite_outline)
+
+                imgFavorite.setOnClickListener {
+                    touchActionDelegate?.onFavButtonClicked(game);
+                }
             }
         }
 
@@ -55,7 +67,7 @@ class VideoGameAdapter(private val isFavEnabled: Boolean = true): RecyclerView.A
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int){
-        holder.bind(items[position])
+        holder.bind(items[position], this.touchActionDelegate)
     }
 
     override fun getItemCount(): Int {

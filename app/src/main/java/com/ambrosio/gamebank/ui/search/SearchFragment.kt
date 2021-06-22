@@ -55,7 +55,7 @@ class SearchFragment : Fragment() {
         val searchGamesRV = view.findViewById<RecyclerView>(R.id.searchRV)
         searchGamesRV.layoutManager = GridLayoutManager(context, 2)
 
-        searchGamesAdapter = VideoGameAdapter(isFavEnabled = false)
+        searchGamesAdapter = VideoGameAdapter(isFavEnabled = false, touchActionDelegate = null)
         searchGamesRV.adapter = searchGamesAdapter
 
 

@@ -5,18 +5,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
-import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ambrosio.gamebank.R
+import com.ambrosio.gamebank.adapters.TouchActionDelegate
 import com.ambrosio.gamebank.adapters.VideoGameAdapter
+import com.ambrosio.gamebank.models.VideoGame
 import com.ambrosio.gamebank.ui.trending.TrendingViewModel
 import java.util.*
 
-class FavoritesFragment : Fragment() {
+class FavoritesFragment : Fragment(), TouchActionDelegate {
 
     private lateinit var favoritesViewModel: FavoritesViewModel
     private lateinit var favoriteGamesAdapter : VideoGameAdapter
@@ -44,16 +44,16 @@ class FavoritesFragment : Fragment() {
         val favoriteGamesRV = view.findViewById<RecyclerView>(R.id.favoritesRV)
         favoriteGamesRV.layoutManager = GridLayoutManager(context, 2)
 
-        favoriteGamesAdapter = VideoGameAdapter()
+        favoriteGamesAdapter = VideoGameAdapter(this)
         favoriteGamesRV.adapter = favoriteGamesAdapter
     }
 
     private fun initViewModel(){
-        val viewModel = ViewModelProvider(this).get(FavoritesViewModel::class.java)
-//        viewModel.getTrendingListObserver().observe(viewLifecycleOwner, { videoGames ->
-//            favoriteGamesAdapter.setUpdatedData(videoGames)
-//        })
-//
-//        viewModel.fetchTrending()
+        favoritesViewModel = ViewModelProvider(this).get(FavoritesViewModel::class.java)
+
+    }
+
+    override fun onFavButtonClicked(game: VideoGame) {
+        favoritesViewModel.toggleAndUpdate(game)
     }
 }

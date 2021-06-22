@@ -4,6 +4,6 @@
     <solid
         android:color="@color/on_primary" />
     <stroke
-        android:width="1dip"
+        android:width="@dimen/border_size"
         android:color="@color/item_border" />
 </shape>

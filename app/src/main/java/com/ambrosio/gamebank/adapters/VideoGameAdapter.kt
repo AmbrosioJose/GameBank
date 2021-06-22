@@ -6,11 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.view.isInvisible
+import androidx.core.view.isVisible
 import com.ambrosio.gamebank.R
 import com.ambrosio.gamebank.models.VideoGame
 import com.bumptech.glide.Glide
 
-class VideoGameAdapter: RecyclerView.Adapter<VideoGameAdapter.MyViewHolder>(){
+class VideoGameAdapter(private val isFavEnabled: Boolean = true): RecyclerView.Adapter<VideoGameAdapter.MyViewHolder>(){
 
     var items = ArrayList<VideoGame>()
 
@@ -19,7 +21,7 @@ class VideoGameAdapter: RecyclerView.Adapter<VideoGameAdapter.MyViewHolder>(){
         notifyDataSetChanged()
     }
 
-    class MyViewHolder(view: View): RecyclerView.ViewHolder(view){
+    class MyViewHolder(view: View, private val isFavEnabled: Boolean): RecyclerView.ViewHolder(view){
         private val imgCover: ImageView = view.findViewById(R.id.imgGame)
         private val imgFavorite: ImageView = view.findViewById(R.id.icFavorite)
         private val tvName: TextView = view.findViewById(R.id.tvName)
@@ -37,6 +39,9 @@ class VideoGameAdapter: RecyclerView.Adapter<VideoGameAdapter.MyViewHolder>(){
                     .into(imgCover)
             }
 
+            if(!isFavEnabled){
+                imgFavorite.isInvisible = true
+            }
         }
 
     }
@@ -46,7 +51,7 @@ class VideoGameAdapter: RecyclerView.Adapter<VideoGameAdapter.MyViewHolder>(){
         viewType: Int
     ): MyViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.video_game_item, parent, false)
-        return MyViewHolder(view)
+        return MyViewHolder(view, this.isFavEnabled)
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int){
@@ -55,5 +60,10 @@ class VideoGameAdapter: RecyclerView.Adapter<VideoGameAdapter.MyViewHolder>(){
 
     override fun getItemCount(): Int {
         return items.size
+    }
+
+    fun clear() {
+        this.items = ArrayList()
+        notifyDataSetChanged()
     }
 }

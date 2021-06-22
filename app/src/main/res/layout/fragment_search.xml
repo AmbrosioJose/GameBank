@@ -30,21 +30,27 @@
         app:layout_constraintTop_toBottomOf="@+id/include2" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/imgNoResult"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_no_results"
         app:layout_constraintBottom_toBottomOf="@+id/searchRV"
         app:layout_constraintEnd_toEndOf="@+id/searchRV"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/include2" />
+        app:layout_constraintTop_toBottomOf="@+id/include2"
+        app:layout_constraintVertical_bias="0.26" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/tvNoResults"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:fontFamily="@font/poppins_bold"
+        android:text="@string/no_results_found"
+        android:textAllCaps="true"
+        android:textColor="@color/light_text_color"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toBottomOf="@+id/imgNoResult" />
 </androidx.constraintlayout.widget.ConstraintLayout>

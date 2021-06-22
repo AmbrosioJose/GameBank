@@ -3,4 +3,5 @@
     <string name="title_trending_games">Trending Games</string>
     <string name="title_search_games">SEARCH GAMES</string>
     <string name="title_favorite_games">Favorite Games</string>
+    <string name="no_results_found">No results found</string>
 </resources>

@@ -20,6 +20,7 @@
     <color name="gray_tint">#61FFFFFF</color>
 
     <color name="item_border">#1F000000</color>
+    <color name="light_text_color">#40000000</color>
 
 
 </resources>

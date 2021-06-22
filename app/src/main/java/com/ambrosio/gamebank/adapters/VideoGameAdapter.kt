@@ -33,7 +33,8 @@ class VideoGameAdapter(private val touchActionDelegate: TouchActionDelegate?, pr
 
         fun bind(game: VideoGame, touchActionDelegate: TouchActionDelegate?){
             tvName.text = game.name
-            tvGenre.text = game.genres?.first()?.name?:""
+            if(!game.genres.isNullOrEmpty())
+                tvGenre.text = game.genres.first().name?:""
             tvRating.text = "${(game?.rating?:0).toInt().toString()}%"
             if(game.cover != null && game.cover.url.isNotEmpty() ?: false){
                 print("https://"+ game.cover.url)

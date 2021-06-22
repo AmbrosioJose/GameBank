@@ -5,6 +5,8 @@ import androidx.room.PrimaryKey
 import androidx.room.ColumnInfo
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.decodeFromString
+import kotlinx.serialization.json.Json
 
 
 const val VIDEO_GAME_TABLE = "video_games"
@@ -18,20 +20,21 @@ class VideoGame(
 
     @SerialName("name")
     @ColumnInfo(name = "name")
-    val name: String,
+    val name: String = "",
 
-    @SerialName("genres")
     @ColumnInfo(name = "genres")
-    val genres: ArrayList<Genre>?,
+    val genres: ArrayList<Genre>? = ArrayList(),
 
-    @SerialName("cover")
+    @Transient
     @ColumnInfo(name = "cover")
-    val cover: Cover?,
+    val cover: Cover? = Json.decodeFromString<Cover>("""
+        {"id":0, "url":""}
+    """),
 
-    @SerialName("rating")
     @ColumnInfo(name = "rating")
     val rating: Double? = 0.0,
 
+    @Transient
     @SerialName("first_release_date")
     @ColumnInfo(name = "release_date")
     val releaseDate: Int = 0,

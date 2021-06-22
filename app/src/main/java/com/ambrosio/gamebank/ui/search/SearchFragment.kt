@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
+import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
@@ -60,9 +61,18 @@ class SearchFragment : Fragment() {
 
 
 
-        etHeader.onSubmit { submit(etHeader.text.toString()) }
+        etHeader.onSubmit {
+            submit(etHeader.text.toString())
+            hideKeyboard(view)
+        }
 
 
+
+    }
+
+    private fun hideKeyboard(view: View){
+        val imm = ContextCompat.getSystemService(view.context, InputMethodManager::class.java)
+        imm?.hideSoftInputFromWindow(view.windowToken, 0)
     }
 
     private fun hideNoResultsView(){

@@ -4,27 +4,51 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.ambrosio.gamebank.foundations.ApplicationScope
+import com.ambrosio.gamebank.models.IGameModel
 import com.ambrosio.gamebank.models.VideoGame
 import com.ambrosio.gamebank.network.WrapperService
+import com.ambrosio.gamebank.utils.toggleFavorite
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import toothpick.Toothpick
+import javax.inject.Inject
 
 class FavoritesViewModel : ViewModel() {
-    private var searchLiveData : MutableLiveData<ArrayList<VideoGame>> = MutableLiveData()
+    @Inject
+    lateinit var gameModel: IGameModel
 
-    fun getSearchListObserver(): MutableLiveData<ArrayList<VideoGame>> {
-        return searchLiveData
+    private var favoriteLiveData: MutableLiveData<ArrayList<VideoGame>> = MutableLiveData()
+
+    fun getFavoriteListObserver(): MutableLiveData<ArrayList<VideoGame>> {
+        return favoriteLiveData
     }
 
-    fun fetchTrending(searchTerm: String) {
+    init {
+        Toothpick.inject(this, ApplicationScope.scope)
+    }
+
+    fun fetchFavorites() {
         viewModelScope.launch(Dispatchers.IO) {
-            val response: ArrayList<VideoGame> = WrapperService().searchGames(searchTerm)
-            print(response)
-            searchLiveData.postValue(response?:ArrayList())
+            gameModel.let {
+                it.retrieveFavoriteGames { games ->
+                    favoriteLiveData.postValue(games)
+                }
+            }
         }
     }
 
-    fun toggleAndUpdate(game: VideoGame){
 
+    fun toggleFavAndUpdate(game: VideoGame){
+        toggleFavorite(game)
+
+        viewModelScope.launch(Dispatchers.IO) {
+            gameModel.let {
+                it.updateGame(game){ isSuccess ->
+                    println("Games updated $isSuccess")
+                    fetchFavorites()
+                }
+            }
+        }
     }
 }

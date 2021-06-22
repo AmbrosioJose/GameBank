@@ -43,6 +43,7 @@ class TrendingFragment : Fragment(), TouchActionDelegate {
         etHeader.setText(getString(R.string.title_trending_games).toUpperCase(Locale.ROOT))
         val headerIcon: ImageView = view.findViewById(R.id.headerIcon)
         headerIcon.setImageResource(R.drawable.ic_trending)
+
         val trendingGamesRV = view.findViewById<RecyclerView>(R.id.trendingRV)
         trendingGamesRV.layoutManager = GridLayoutManager(context, 2)
 

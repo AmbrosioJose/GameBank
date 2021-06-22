@@ -4,7 +4,7 @@
         <item name="windowActionBar">false</item>
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/primary_variant_light</item>
-        <item name="colorPrimaryVariant">@color/primary_variant_dark</item>
+        <item name="colorPrimaryVariant">@color/on_primary</item>
         <item name="colorOnPrimary">@color/on_secondary</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/secondary</item>

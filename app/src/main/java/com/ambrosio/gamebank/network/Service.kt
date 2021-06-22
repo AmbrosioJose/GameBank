@@ -1,5 +1,7 @@
 package com.ambrosio.gamebank.network
 
+
+import com.ambrosio.gamebank.BuildConfig
 import com.ambrosio.gamebank.models.VideoGame
 import com.ambrosio.gamebank.models.VideoGamesResponse
 import com.api.igdb.request.IGDBWrapper

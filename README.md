@@ -1,16 +1,16 @@
 # GameBank
 
 ### Task Overview
-Main Screen
+
 - [x] Trending Games
 - [x] Search
 - [x] Favorite
 
 ### Known bugs:
-- [ ] After fetching from api then reloading from database the games won't all be in the same order. Perhaps sorting after fetching from api can help.
+- [ ] After fetching from api then reloading from database the games won't all be in the same order. This will cause a quick shift. Perhaps sorting after fetching from api can help.
 
 ### Running Instructions
-- Add API key to local.properties
+- Add API keys to local.properties
   - CLIENT_ID, TOKEN
 
 ### APK

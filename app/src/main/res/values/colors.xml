@@ -19,5 +19,7 @@
     <color name="on_error">#FFFFFF</color>
     <color name="gray_tint">#61FFFFFF</color>
 
+    <color name="item_border">#1F000000</color>
+
 
 </resources>

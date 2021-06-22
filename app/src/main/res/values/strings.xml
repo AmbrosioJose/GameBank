@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">GameBank</string>
     <string name="title_trending_games">Trending Games</string>
-    <string name="title_search_games">Search Games</string>
+    <string name="title_search_games">SEARCH GAMES</string>
     <string name="title_favorite_games">Favorite Games</string>
 </resources>

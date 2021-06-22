@@ -10,26 +10,36 @@
 
 
     <ImageView
-        android:id="@+id/fragmentIcon"
+        android:id="@+id/headerIcon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_trending"
+        app:srcCompat="@drawable/ic_search"
         app:tint="@color/primary" />
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
+    <EditText
+        android:id="@+id/etHeader"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/header_item_spacing"
-        android:layout_marginEnd="@dimen/header_item_spacing"
-        android:textSize="@dimen/header_text_size"
+        android:paddingTop="@dimen/spacing_tiny"
+        android:fontFamily="@font/poppins_bold"
+        android:hint="@string/title_search_games"
+        android:enabled="false"
+        android:imeOptions="actionSearch"
+        android:inputType="text"
         android:textColor="@color/on_secondary"
         android:textFontWeight="700"
-        tools:text="TRENDING GAMES"
+        android:textSize="@dimen/header_text_size"
+        android:background="@android:color/transparent"
+        android:textCursorDrawable="@drawable/cursor_color"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/fragmentIcon"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/headerIcon"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.533"
+        tools:text="TRENDING GAMES" />
 </androidx.constraintlayout.widget.ConstraintLayout>

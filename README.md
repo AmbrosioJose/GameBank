@@ -20,7 +20,7 @@ Main Screen
 
 |Trending Games |Search | Favorite|
 --- | --- | ---
-![Trending](trending.png)|![Trending](trending.png) |![Trending](trending.png)
+![Trending](trending.png)|![Search](search.png) |![Favorites](favorites.png)
 
 ### Possible Improvements
 [ ] Properly handle authorization token

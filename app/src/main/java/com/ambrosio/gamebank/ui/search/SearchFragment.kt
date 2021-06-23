@@ -11,6 +11,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.core.view.isInvisible
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
@@ -48,8 +49,14 @@ class SearchFragment : Fragment() {
         hideNoResultsView()
 
         val etHeader = view.findViewById<EditText>(R.id.etHeader)
-        etHeader.setCompoundDrawablesWithIntrinsicBounds(null, null, ContextCompat.getDrawable(view.context,R.drawable.ic_clear), null)
         etHeader.isEnabled = true
+
+        val imgClear = view.findViewById<ImageView>(R.id.imgClear)
+        imgClear.isVisible = true
+        imgClear.setOnClickListener {
+            etHeader.setText("")
+        }
+
 
 
 

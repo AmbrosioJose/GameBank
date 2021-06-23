@@ -4,7 +4,6 @@
 
 - [x] Trending Games
 - [x] Search
-  - [ ] Forgot to implement clear when 'x' icon is pressed
 - [x] Favorite
 
 ### Known bugs:

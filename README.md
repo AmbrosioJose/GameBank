@@ -4,6 +4,7 @@
 
 - [x] Trending Games
 - [x] Search
+  - [ ] Forgot to implement clear when 'x' icon is pressed
 - [x] Favorite
 
 ### Known bugs:
@@ -23,6 +24,7 @@
 ![Trending](trending.png)|![Search](search.png) |![Favorites](favorites.png)
 
 ### Possible Improvements
+- [ ] Right now all video games are being reloaded when the a change is made to a video game (is favorite or not) perhaps I can only change local field and save to db and not referesh whole recycler view.
 - [ ] Properly handle authorization token
 - [ ] Currently only fetching from api once in trending then relying on database. This has many ways in which it can be improved like refreshing data at every launch.
 
